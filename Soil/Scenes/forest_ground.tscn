@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2rbfnn5uat8t"]
+
+[ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
+[ext_resource type="Texture2D" uid="uid://bm3wi7t3hkjtp" path="res://Soil/Assets/baseSoilTileSet.png" id="2_tdxnh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8byll"]
+texture = ExtResource("2_tdxnh")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jdse3"]
+sources/0 = SubResource("TileSetAtlasSource_8byll")
+
+[node name="forest ground" type="Node2D"]
+texture_filter = 1
+scale = Vector2(4, 4)
+script = ExtResource("1_dqwt0")
+
+[node name="soil" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_jdse3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
