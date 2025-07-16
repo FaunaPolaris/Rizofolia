@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://tio4ck3fpjps"]
+
+[ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="1_0gxv8"]
+[ext_resource type="Shader" uid="uid://chndcykbfu4oj" path="res://UI/Shaders/chromaKey.gdshader" id="2_ypi5g"]
+[ext_resource type="Texture2D" uid="uid://cdsls8d8v1ups" path="res://UI/Assets/leafWallpaper.png" id="3_ymeb5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nt70i"]
+texture = ExtResource("1_0gxv8")
+texture_margin_left = 6.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 7.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(1, 2, 63, 62)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap57c"]
+shader = ExtResource("2_ypi5g")
+shader_parameter/image = ExtResource("3_ymeb5")
+shader_parameter/image_scale = Vector2(1, 1)
+shader_parameter/image_offset = Vector2(0, 0)
+shader_parameter/min_alpha = 0.1
+shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/color_match_threshold = 0.8
+
+[sub_resource type="Gradient" id="Gradient_0gxv8"]
+offsets = PackedFloat32Array(0.532468, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.521569)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ypi5g"]
+gradient = SubResource("Gradient_0gxv8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="interface tests" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 21.0
+offset_right = 7.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="MarginContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 9.75
+offset_top = 1.25
+offset_right = 168.75
+offset_bottom = 141.25
+theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
+
+[node name="ColorRect" type="Panel" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_ap57c")
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ypi5g")
