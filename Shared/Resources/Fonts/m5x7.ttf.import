@@ -2,18 +2,18 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://twmfxd1wufbc"
-path="res://.godot/imported/PixeloidSans.ttf-60bf61017f95351211c216137315976d.fontdata"
+uid="uid://drjiq8gflnj4c"
+path="res://.godot/imported/m5x7.ttf-dc528a60fbe4f453dce3a31f8b4ad2fe.fontdata"
 
 [deps]
 
-source_file="res://Shared/Resources/Fonts/PixeloidSans.ttf"
-dest_files=["res://.godot/imported/PixeloidSans.ttf-60bf61017f95351211c216137315976d.fontdata"]
+source_file="res://Shared/Resources/Fonts/m5x7.ttf"
+dest_files=["res://.godot/imported/m5x7.ttf-dc528a60fbe4f453dce3a31f8b4ad2fe.fontdata"]
 
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false

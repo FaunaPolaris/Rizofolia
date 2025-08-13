@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://tio4ck3fpjps"]
+[gd_scene load_steps=10 format=3 uid="uid://tio4ck3fpjps"]
 
 [ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="1_0gxv8"]
 [ext_resource type="Shader" uid="uid://chndcykbfu4oj" path="res://UI/Shaders/chromaKey.gdshader" id="2_ypi5g"]
 [ext_resource type="Texture2D" uid="uid://cdsls8d8v1ups" path="res://UI/Assets/leafWallpaper.png" id="3_ymeb5"]
+[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="4_ypi5g"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nt70i"]
 texture = ExtResource("1_0gxv8")
@@ -22,6 +23,12 @@ shader_parameter/image_offset = Vector2(0, 0)
 shader_parameter/min_alpha = 0.1
 shader_parameter/target_color = Color(0, 0, 0, 1)
 shader_parameter/color_match_threshold = 0.8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ymeb5"]
+line_spacing = -1.0
+font = ExtResource("4_ypi5g")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_0gxv8"]
 offsets = PackedFloat32Array(0.532468, 1)
@@ -48,15 +55,23 @@ scale = Vector2(4, 4)
 
 [node name="MarginContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 0.5
-offset_top = -2.5
-offset_right = 159.5
-offset_bottom = 137.5
+offset_left = 14.5
+offset_top = 11.5
+offset_right = 208.5
+offset_bottom = 100.5
 theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 
 [node name="ColorRect" type="Panel" parent="MarginContainer"]
 material = SubResource("ShaderMaterial_ap57c")
 layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Hello, I'm a test text, I hope you can read me well, it fells like a  good size and interesting   readability on this font, and  there is accentuation á ã é ê"
+label_settings = SubResource("LabelSettings_ymeb5")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
