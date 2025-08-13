@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2rbfnn5uat8t"]
+[gd_scene load_steps=9 format=3 uid="uid://c2rbfnn5uat8t"]
 
 [ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
 [ext_resource type="Texture2D" uid="uid://bm3wi7t3hkjtp" path="res://Soil/Assets/baseSoilTileSet.png" id="2_tdxnh"]
+[ext_resource type="Script" uid="uid://dsg51tgeaaodd" path="res://Soil/Scripts/soil.gd" id="3_5wy8o"]
 [ext_resource type="Script" uid="uid://cxn38tpcxt6g0" path="res://addons/TopDownCamera2D/top_down_camera_2d.gd" id="3_8byll"]
+[ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="3_jdse3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjdvh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8byll"]
 texture = ExtResource("2_tdxnh")
@@ -21,7 +25,10 @@ scale = Vector2(4, 4)
 script = ExtResource("1_dqwt0")
 
 [node name="soil" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_xjdvh")
 tile_set = SubResource("TileSet_jdse3")
+script = ExtResource("3_5wy8o")
+highlight_texture = ExtResource("3_jdse3")
 
 [node name="TopDownCamera2D" type="Camera2D" parent="."]
 script = ExtResource("3_8byll")

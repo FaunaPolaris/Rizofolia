@@ -48,10 +48,10 @@ scale = Vector2(4, 4)
 
 [node name="MarginContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 22.5
-offset_top = 8.75
-offset_right = 181.5
-offset_bottom = 148.75
+offset_left = 0.5
+offset_top = -2.5
+offset_right = 159.5
+offset_bottom = 137.5
 theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 
 [node name="ColorRect" type="Panel" parent="MarginContainer"]

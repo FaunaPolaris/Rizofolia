@@ -10,6 +10,7 @@ func	_ready():
 func	initTiles(size):
 	var offset = size *  .5
 	var coord : Vector2 = Vector2(-offset, -offset)
+	
 	while coord.y < offset:
 		coord.x = -offset
 		while coord.x < offset:
