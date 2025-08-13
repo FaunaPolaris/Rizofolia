@@ -8,10 +8,11 @@ func	_ready():
 	updateDisplayedTiles(tiles)
 	
 func	initTiles(size):
-	var coord : Vector2 = Vector2(0, 0)
-	while coord.y < size:
-		coord.x = 0
-		while coord.x < size:
+	var offset = size *  .5
+	var coord : Vector2 = Vector2(-offset, -offset)
+	while coord.y < offset:
+		coord.x = -offset
+		while coord.x < offset:
 			var new_tile = Tile.new(Vector2i(coord.x, coord.y), randi_range(0, 4), 0, 0)
 			tiles.append(new_tile)
 			coord.x += 1
