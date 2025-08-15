@@ -18,7 +18,7 @@ func	initTiles(size):
 				randi_range(0, 4), randi_range(0, 2), randi_range(0, 1))
 			tiles.append(new_tile)
 			coord.x += 1
-		coord.y += 1
+		coord.y += 1 
 	
 func updateDisplayedTiles(input : Array[Tile]):
 	for tile in tiles:
