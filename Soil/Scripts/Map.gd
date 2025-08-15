@@ -14,7 +14,7 @@ func	initTiles(size):
 	while coord.y < offset:
 		coord.x = -offset
 		while coord.x < offset:
-			var new_tile = Tile.new(Vector2i(coord.x, coord.y), randi_range(0, 2), randi_range(0, 2), 0)
+			var new_tile = Tile.new(Vector2i(coord.x, coord.y), randi_range(0, 2), randi_range(0, 3), randi_range(0, 4))
 			tiles.append(new_tile)
 			coord.x += 1
 		coord.y += 1
@@ -23,3 +23,4 @@ func updateDisplayedTiles(input : Array[Tile]):
 	for tile in tiles:
 		$soil.set_cell(tile.coords, 0, Vector2i(tile.soil_quality, 0))
 		$leaf.set_cell(tile.coords, 0, Vector2i(tile.leaf_coverage, 0))
+		$canopy.set_cell(tile.coords, 0, Vector2i(tile.canopy_tree, 0))

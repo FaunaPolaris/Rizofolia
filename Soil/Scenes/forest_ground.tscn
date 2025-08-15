@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2rbfnn5uat8t"]
+[gd_scene load_steps=16 format=3 uid="uid://c2rbfnn5uat8t"]
 
 [ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
 [ext_resource type="Texture2D" uid="uid://bm3wi7t3hkjtp" path="res://Soil/Assets/baseSoilTileSet.png" id="2_tdxnh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cxn38tpcxt6g0" path="res://addons/TopDownCamera2D/top_down_camera_2d.gd" id="3_8byll"]
 [ext_resource type="Texture2D" uid="uid://dqefhnysemcks" path="res://UI/Assets/highlight.png" id="4_5wy8o"]
 [ext_resource type="Texture2D" uid="uid://brjfousn1da3w" path="res://Soil/Assets/leafCoverageTileSet.png" id="5_xjdvh"]
+[ext_resource type="Texture2D" uid="uid://iyy8mxt72imv" path="res://Soil/Assets/treesTileSet.png" id="6_l5j2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjdvh"]
 
@@ -33,6 +34,16 @@ texture = ExtResource("5_xjdvh")
 [sub_resource type="TileSet" id="TileSet_cx8v2"]
 sources/0 = SubResource("TileSetAtlasSource_l5j2k")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cx8v2"]
+texture = ExtResource("6_l5j2k")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_povnd"]
+sources/0 = SubResource("TileSetAtlasSource_cx8v2")
+
 [node name="forest ground" type="Node2D"]
 texture_filter = 1
 scale = Vector2(4, 4)
@@ -47,6 +58,9 @@ highlight_texture = ExtResource("4_5wy8o")
 [node name="leaf" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_cx8v2")
 tile_set = SubResource("TileSet_cx8v2")
+
+[node name="canopy" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_povnd")
 
 [node name="TopDownCamera2D" type="Camera2D" parent="."]
 script = ExtResource("3_8byll")
