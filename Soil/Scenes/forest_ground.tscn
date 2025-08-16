@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c2rbfnn5uat8t"]
+[gd_scene load_steps=24 format=3 uid="uid://c2rbfnn5uat8t"]
 
 [ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
 [ext_resource type="Shader" uid="uid://dvjcx0w3gguhj" path="res://UI/Shaders/lineBackground.gdshader" id="2_5twtp"]
@@ -7,12 +7,13 @@
 [ext_resource type="Script" uid="uid://cxn38tpcxt6g0" path="res://addons/TopDownCamera2D/top_down_camera_2d.gd" id="3_8byll"]
 [ext_resource type="Shader" uid="uid://dol3bnwqn2edl" path="res://UI/Shaders/crt.gdshader" id="3_cx8v2"]
 [ext_resource type="Texture2D" uid="uid://dqefhnysemcks" path="res://UI/Assets/highlight.png" id="4_5wy8o"]
-[ext_resource type="Shader" uid="uid://w20hh6f1q8w8" path="res://UI/Shaders/drop_shadow.gdshader" id="5_sospa"]
 [ext_resource type="Texture2D" uid="uid://brjfousn1da3w" path="res://Soil/Assets/leafCoverageTileSet.png" id="5_xjdvh"]
 [ext_resource type="TileSet" uid="uid://eeqpr2n2irwi" path="res://Soil/Resources/trees.tres" id="6_l5j2k"]
 [ext_resource type="Texture2D" uid="uid://bkimvo87koneh" path="res://UI/Assets/midTopInterface.png" id="7_omq11"]
 [ext_resource type="Texture2D" uid="uid://bsf8inf5yqw0x" path="res://UI/Assets/waterWallpaper.png" id="10_y2h00"]
-[ext_resource type="Texture2D" uid="uid://clnmyv007focq" path="res://UI/Assets/rightBotInterface.png" id="11_y2h00"]
+[ext_resource type="Texture2D" uid="uid://b6ay28oy8t6yd" path="res://UI/Assets/midBotInterface.png" id="11_sospa"]
+[ext_resource type="Script" uid="uid://df5orspxgfhbt" path="res://UI/Scripts/position_counter.gd" id="12_2ni4i"]
+[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="12_omq11"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sospa"]
 shader = ExtResource("2_5twtp")
@@ -22,14 +23,6 @@ shader_parameter/angle = 0.0
 shader_parameter/line_count = 1200.0
 shader_parameter/speed = 10.0
 shader_parameter/blur = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_omq11"]
-shader = ExtResource("5_sospa")
-shader_parameter/fov = 90.0
-shader_parameter/cull_back = true
-shader_parameter/y_rot = 0.0
-shader_parameter/x_rot = 0.0
-shader_parameter/inset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjdvh"]
 
@@ -58,6 +51,12 @@ texture = ExtResource("5_xjdvh")
 [sub_resource type="TileSet" id="TileSet_cx8v2"]
 sources/0 = SubResource("TileSetAtlasSource_l5j2k")
 
+[sub_resource type="LabelSettings" id="LabelSettings_sospa"]
+font = ExtResource("12_omq11")
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.894118, 0.890196, 0.74902, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_povnd"]
 shader = ExtResource("3_cx8v2")
 shader_parameter/resolution = Vector2(500, 340)
@@ -80,6 +79,27 @@ offset_top = -190.0
 offset_right = 250.0
 offset_bottom = 190.0
 texture = ExtResource("10_y2h00")
+
+[node name="textures" type="Node2D" parent="."]
+
+[node name="soil" type="TileMapLayer" parent="textures"]
+material = SubResource("ShaderMaterial_xjdvh")
+tile_set = SubResource("TileSet_jdse3")
+script = ExtResource("3_5wy8o")
+highlight_texture = ExtResource("4_5wy8o")
+
+[node name="leaf" type="TileMapLayer" parent="textures"]
+material = SubResource("ShaderMaterial_cx8v2")
+tile_set = SubResource("TileSet_cx8v2")
+
+[node name="canopy" type="TileMapLayer" parent="textures"]
+tile_set = ExtResource("6_l5j2k")
+
+[node name="under-story" type="TileMapLayer" parent="textures"]
+tile_set = ExtResource("6_l5j2k")
+
+[node name="forest-ground" type="TileMapLayer" parent="textures"]
+tile_set = ExtResource("6_l5j2k")
 
 [node name="TopDownCamera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -115,8 +135,28 @@ z_index = 1
 layout_mode = 0
 offset_left = -120.0
 offset_top = 66.0
-offset_right = 124.0
+offset_right = 122.0
 offset_bottom = 70.0
+color = Color(0.454902, 0.654902, 0.831373, 1)
+
+[node name="lef" type="ColorRect" parent="TopDownCamera2D/corners"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -122.0
+offset_top = -66.0
+offset_right = -118.0
+offset_bottom = 70.0
+color = Color(0.454902, 0.654902, 0.831373, 1)
+
+[node name="rig" type="ColorRect" parent="TopDownCamera2D/corners"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 118.0
+offset_top = -68.0
+offset_right = 122.0
+offset_bottom = 68.0
 color = Color(0.454902, 0.654902, 0.831373, 1)
 
 [node name="Interface" type="Control" parent="TopDownCamera2D"]
@@ -126,52 +166,53 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="rightBot" type="TextureRect" parent="TopDownCamera2D/Interface"]
-visible = false
-z_index = 1
-material = SubResource("ShaderMaterial_omq11")
-layout_mode = 0
-offset_left = 68.0
-offset_top = 36.0
-offset_right = 136.0
-offset_bottom = 77.0
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("11_y2h00")
-
 [node name="midTop" type="TextureRect" parent="TopDownCamera2D/Interface"]
 layout_mode = 0
-offset_left = -72.0
+offset_left = -122.0
 offset_top = -70.0
-offset_right = 120.0
+offset_right = -58.0
 offset_bottom = -54.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_omq11")
 
-[node name="textures" type="Node2D" parent="."]
+[node name="positionCounter" type="TextureRect" parent="TopDownCamera2D/Interface"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 58.0
+offset_right = 40.0
+offset_bottom = 74.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("11_sospa")
+script = ExtResource("12_2ni4i")
 
-[node name="soil" type="TileMapLayer" parent="textures"]
-material = SubResource("ShaderMaterial_xjdvh")
-tile_set = SubResource("TileSet_jdse3")
-script = ExtResource("3_5wy8o")
-highlight_texture = ExtResource("4_5wy8o")
+[node name="X" type="Label" parent="TopDownCamera2D/Interface/positionCounter"]
+layout_mode = 0
+offset_left = 21.3333
+offset_top = 2.66667
+offset_right = 33.3333
+offset_bottom = 15.6667
+scale = Vector2(0.5, 0.5)
+text = "12"
+label_settings = SubResource("LabelSettings_sospa")
+horizontal_alignment = 1
+visible_characters = 2
 
-[node name="leaf" type="TileMapLayer" parent="textures"]
-material = SubResource("ShaderMaterial_cx8v2")
-tile_set = SubResource("TileSet_cx8v2")
-
-[node name="canopy" type="TileMapLayer" parent="textures"]
-tile_set = ExtResource("6_l5j2k")
-
-[node name="under-story" type="TileMapLayer" parent="textures"]
-tile_set = ExtResource("6_l5j2k")
-
-[node name="forest-ground" type="TileMapLayer" parent="textures"]
-tile_set = ExtResource("6_l5j2k")
+[node name="Y" type="Label" parent="TopDownCamera2D/Interface/positionCounter"]
+layout_mode = 0
+offset_left = 37.3333
+offset_top = 2.66667
+offset_right = 49.3333
+offset_bottom = 15.6667
+scale = Vector2(0.5, 0.5)
+text = "12"
+label_settings = SubResource("LabelSettings_sospa")
+horizontal_alignment = 1
+visible_characters = 2
 
 [node name="Panel" type="ColorRect" parent="."]
 z_index = 2
 material = SubResource("ShaderMaterial_povnd")
-offset_left = -258.0
-offset_top = -198.0
-offset_right = 242.0
-offset_bottom = 182.0
+offset_left = -272.0
+offset_top = -206.0
+offset_right = 228.0
+offset_bottom = 194.0

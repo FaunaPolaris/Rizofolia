@@ -22,6 +22,7 @@ func _process(_delta):
 	
 	if get_cell_source_id(tile_pos) != -1:
 		highlight_sprite.position = map_to_local(tile_pos)
+		Global.current_mouse_hover_tile = tile_pos
 		highlight_sprite.show()
 	else:
 		highlight_sprite.hide()
