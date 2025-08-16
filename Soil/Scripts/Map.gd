@@ -22,8 +22,8 @@ func	initTiles(size):
 	
 func updateDisplayedTiles(input : Array[Tile]):
 	for tile in tiles:
-		$soil.set_cell(tile.coords, 0, Vector2i(tile.soil_quality, 0))
-		$leaf.set_cell(tile.coords, 0, Vector2i(tile.leaf_coverage, 0))
-		$canopy.set_cell(tile.coords, 0, Vector2i(tile.canopy_tree, 0))
-		$"under-story".set_cell(tile.coords, 0, Vector2i(tile.under_story, 1))
-		$"forest-ground".set_cell(tile.coords, 0, Vector2i(tile.under_story, 2))
+		$"textures/soil".set_cell(tile.coords, 0, Vector2i(tile.soil_quality, 0))
+		$textures/leaf.set_cell(tile.coords, 0, Vector2i(tile.leaf_coverage, 0))
+		$textures/canopy.set_cell(tile.coords, 0, Vector2i(tile.canopy_tree, 0))
+		$"textures/under-story".set_cell(tile.coords, 0, Vector2i(tile.under_story, 1))
+		$"textures/forest-ground".set_cell(tile.coords, 0, Vector2i(tile.under_story, 2))

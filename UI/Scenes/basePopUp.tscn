@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://tio4ck3fpjps"]
+[gd_scene load_steps=6 format=3 uid="uid://tio4ck3fpjps"]
 
 [ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="1_pbxun"]
-[ext_resource type="Shader" uid="uid://chndcykbfu4oj" path="res://UI/Shaders/chromaKey.gdshader" id="2_lxojb"]
-[ext_resource type="Texture2D" uid="uid://cdsls8d8v1ups" path="res://UI/Assets/leafWallpaper.png" id="3_pwt4m"]
+[ext_resource type="Material" uid="uid://b6rjpq0luo7d7" path="res://UI/Resources/chormaTexture.tres" id="2_tilo3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nt70i"]
 texture = ExtResource("1_pbxun")
@@ -13,15 +12,6 @@ texture_margin_bottom = 7.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(1, 2, 63, 62)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap57c"]
-shader = ExtResource("2_lxojb")
-shader_parameter/image = ExtResource("3_pwt4m")
-shader_parameter/image_scale = Vector2(1, 1)
-shader_parameter/image_offset = Vector2(0, 0)
-shader_parameter/min_alpha = 0.1
-shader_parameter/target_color = Color(0, 0, 0, 1)
-shader_parameter/color_match_threshold = 0.8
 
 [sub_resource type="Gradient" id="Gradient_0gxv8"]
 offsets = PackedFloat32Array(0.532468, 1)
@@ -52,8 +42,8 @@ offset_right = 79.0
 offset_bottom = 80.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 
-[node name="ColorRect" type="Panel" parent="MarginContainer"]
-material = SubResource("ShaderMaterial_ap57c")
+[node name="Panel" type="Panel" parent="MarginContainer"]
+material = ExtResource("2_tilo3")
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
