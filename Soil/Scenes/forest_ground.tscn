@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2rbfnn5uat8t"]
+[gd_scene load_steps=19 format=3 uid="uid://c2rbfnn5uat8t"]
 
 [ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
+[ext_resource type="Shader" uid="uid://dvjcx0w3gguhj" path="res://UI/Shaders/lineBackground.gdshader" id="2_5twtp"]
 [ext_resource type="Texture2D" uid="uid://bm3wi7t3hkjtp" path="res://Soil/Assets/baseSoilTileSet.png" id="2_tdxnh"]
 [ext_resource type="Script" uid="uid://dsg51tgeaaodd" path="res://Soil/Scripts/soil.gd" id="3_5wy8o"]
 [ext_resource type="Script" uid="uid://cxn38tpcxt6g0" path="res://addons/TopDownCamera2D/top_down_camera_2d.gd" id="3_8byll"]
@@ -8,6 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://dqefhnysemcks" path="res://UI/Assets/highlight.png" id="4_5wy8o"]
 [ext_resource type="Texture2D" uid="uid://brjfousn1da3w" path="res://Soil/Assets/leafCoverageTileSet.png" id="5_xjdvh"]
 [ext_resource type="TileSet" uid="uid://eeqpr2n2irwi" path="res://Soil/Resources/trees.tres" id="6_l5j2k"]
+[ext_resource type="Texture2D" uid="uid://bsf8inf5yqw0x" path="res://UI/Assets/waterWallpaper.png" id="10_y2h00"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sospa"]
+shader = ExtResource("2_5twtp")
+shader_parameter/color_one = Color(0, 0.317028, 0.560231, 1)
+shader_parameter/color_two = Color(0, 0.254902, 0.545098, 1)
+shader_parameter/angle = 0.0
+shader_parameter/line_count = 1200.0
+shader_parameter/speed = 10.0
+shader_parameter/blur = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjdvh"]
 
@@ -38,7 +49,7 @@ sources/0 = SubResource("TileSetAtlasSource_l5j2k")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_povnd"]
 shader = ExtResource("3_cx8v2")
-shader_parameter/resolution = Vector2(1200, 800)
+shader_parameter/resolution = Vector2(500, 340)
 shader_parameter/scan_line_amount = 0.2
 shader_parameter/warp_amount = 0.1
 shader_parameter/vignette_amount = 0.2
@@ -51,6 +62,14 @@ texture_filter = 1
 scale = Vector2(4, 4)
 script = ExtResource("1_dqwt0")
 
+[node name="scrollingWall" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_sospa")
+offset_left = -250.0
+offset_top = -170.0
+offset_right = 250.0
+offset_bottom = 170.0
+texture = ExtResource("10_y2h00")
+
 [node name="TopDownCamera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 script = ExtResource("3_8byll")
@@ -61,8 +80,8 @@ pan_right_input = "ui_right"
 pan_speed = 200.0
 edge_scroll_enabled = false
 use_boundaries = true
-boundary_X = 600.0
-boundary_Y = 400.0
+boundary_X = 500.0
+boundary_Y = 340.0
 metadata/_custom_type_script = "uid://cxn38tpcxt6g0"
 
 [node name="textures" type="Node2D" parent="."]
@@ -88,7 +107,7 @@ tile_set = ExtResource("6_l5j2k")
 
 [node name="Panel" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_povnd")
-offset_left = -604.0
-offset_top = -395.0
-offset_right = 596.0
-offset_bottom = 405.0
+offset_left = -250.0
+offset_top = -170.0
+offset_right = 250.0
+offset_bottom = 170.0
