@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2rbfnn5uat8t"]
+[gd_scene load_steps=23 format=3 uid="uid://c2rbfnn5uat8t"]
 
 [ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
 [ext_resource type="Shader" uid="uid://dvjcx0w3gguhj" path="res://UI/Shaders/lineBackground.gdshader" id="2_5twtp"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" uid="uid://cxn38tpcxt6g0" path="res://addons/TopDownCamera2D/top_down_camera_2d.gd" id="3_8byll"]
 [ext_resource type="Shader" uid="uid://dol3bnwqn2edl" path="res://UI/Shaders/crt.gdshader" id="3_cx8v2"]
 [ext_resource type="Texture2D" uid="uid://dqefhnysemcks" path="res://UI/Assets/highlight.png" id="4_5wy8o"]
+[ext_resource type="Shader" uid="uid://w20hh6f1q8w8" path="res://UI/Shaders/drop_shadow.gdshader" id="5_sospa"]
 [ext_resource type="Texture2D" uid="uid://brjfousn1da3w" path="res://Soil/Assets/leafCoverageTileSet.png" id="5_xjdvh"]
 [ext_resource type="TileSet" uid="uid://eeqpr2n2irwi" path="res://Soil/Resources/trees.tres" id="6_l5j2k"]
+[ext_resource type="Texture2D" uid="uid://bkimvo87koneh" path="res://UI/Assets/midTopInterface.png" id="7_omq11"]
 [ext_resource type="Texture2D" uid="uid://bsf8inf5yqw0x" path="res://UI/Assets/waterWallpaper.png" id="10_y2h00"]
+[ext_resource type="Texture2D" uid="uid://clnmyv007focq" path="res://UI/Assets/rightBotInterface.png" id="11_y2h00"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sospa"]
 shader = ExtResource("2_5twtp")
@@ -19,6 +22,14 @@ shader_parameter/angle = 0.0
 shader_parameter/line_count = 1200.0
 shader_parameter/speed = 10.0
 shader_parameter/blur = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_omq11"]
+shader = ExtResource("5_sospa")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjdvh"]
 
@@ -52,8 +63,8 @@ shader = ExtResource("3_cx8v2")
 shader_parameter/resolution = Vector2(500, 340)
 shader_parameter/scan_line_amount = 0.2
 shader_parameter/warp_amount = 0.1
-shader_parameter/vignette_amount = 0.2
-shader_parameter/vignette_intensity = 0.3
+shader_parameter/vignette_amount = 0.4
+shader_parameter/vignette_intensity = 0.1
 shader_parameter/grille_amount = 1.0
 shader_parameter/brightness_boost = 1.2
 
@@ -65,9 +76,9 @@ script = ExtResource("1_dqwt0")
 [node name="scrollingWall" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_sospa")
 offset_left = -250.0
-offset_top = -170.0
+offset_top = -190.0
 offset_right = 250.0
-offset_bottom = 170.0
+offset_bottom = 190.0
 texture = ExtResource("10_y2h00")
 
 [node name="TopDownCamera2D" type="Camera2D" parent="."]
@@ -80,9 +91,61 @@ pan_right_input = "ui_right"
 pan_speed = 200.0
 edge_scroll_enabled = false
 use_boundaries = true
-boundary_X = 500.0
-boundary_Y = 340.0
+boundary_X = 540.0
+boundary_Y = 380.0
 metadata/_custom_type_script = "uid://cxn38tpcxt6g0"
+
+[node name="corners" type="Control" parent="TopDownCamera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="top" type="ColorRect" parent="TopDownCamera2D/corners"]
+z_index = 1
+layout_mode = 0
+offset_left = -122.0
+offset_top = -70.0
+offset_right = 122.0
+offset_bottom = -66.0
+color = Color(0.454902, 0.654902, 0.831373, 1)
+
+[node name="bot" type="ColorRect" parent="TopDownCamera2D/corners"]
+z_index = 1
+layout_mode = 0
+offset_left = -120.0
+offset_top = 66.0
+offset_right = 124.0
+offset_bottom = 70.0
+color = Color(0.454902, 0.654902, 0.831373, 1)
+
+[node name="Interface" type="Control" parent="TopDownCamera2D"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="rightBot" type="TextureRect" parent="TopDownCamera2D/Interface"]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_omq11")
+layout_mode = 0
+offset_left = 68.0
+offset_top = 36.0
+offset_right = 136.0
+offset_bottom = 77.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("11_y2h00")
+
+[node name="midTop" type="TextureRect" parent="TopDownCamera2D/Interface"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = -70.0
+offset_right = 120.0
+offset_bottom = -54.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_omq11")
 
 [node name="textures" type="Node2D" parent="."]
 
@@ -106,8 +169,9 @@ tile_set = ExtResource("6_l5j2k")
 tile_set = ExtResource("6_l5j2k")
 
 [node name="Panel" type="ColorRect" parent="."]
+z_index = 2
 material = SubResource("ShaderMaterial_povnd")
-offset_left = -250.0
-offset_top = -170.0
-offset_right = 250.0
-offset_bottom = 170.0
+offset_left = -258.0
+offset_top = -198.0
+offset_right = 242.0
+offset_bottom = 182.0

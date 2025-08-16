@@ -32,3 +32,10 @@ movie_writer/movie_file="/home/faunitos/Pictures/rizo.avi"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/TopDownCamera2D/plugin.cfg")
+
+[shader_globals]
+
+mouse_screen_pos={
+"type": "vec2",
+"value": Vector2(0, 0)
+}

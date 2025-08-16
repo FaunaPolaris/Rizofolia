@@ -1,3 +1,13 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://b6rjpq0luo7d7"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b6rjpq0luo7d7"]
+
+[ext_resource type="Shader" uid="uid://chndcykbfu4oj" path="res://UI/Shaders/chromaKey.gdshader" id="1_ci4gj"]
+[ext_resource type="Texture2D" uid="uid://cdsls8d8v1ups" path="res://UI/Assets/leafWallpaper.png" id="2_uj66r"]
 
 [resource]
+shader = ExtResource("1_ci4gj")
+shader_parameter/image = ExtResource("2_uj66r")
+shader_parameter/image_scale = Vector2(1, 1)
+shader_parameter/image_offset = Vector2(0, 0)
+shader_parameter/min_alpha = 0.1
+shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/color_match_threshold = 0.8
