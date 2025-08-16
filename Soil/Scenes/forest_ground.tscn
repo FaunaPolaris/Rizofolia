@@ -1,12 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2rbfnn5uat8t"]
+[gd_scene load_steps=23 format=3 uid="uid://c2rbfnn5uat8t"]
 
 [ext_resource type="Script" uid="uid://ddroh4f1aibpn" path="res://Soil/Scripts/Map.gd" id="1_dqwt0"]
 [ext_resource type="Shader" uid="uid://dvjcx0w3gguhj" path="res://UI/Shaders/lineBackground.gdshader" id="2_5twtp"]
+[ext_resource type="Texture2D" uid="uid://dqefhnysemcks" path="res://UI/Assets/highlight.png" id="2_omq11"]
 [ext_resource type="Texture2D" uid="uid://bm3wi7t3hkjtp" path="res://Soil/Assets/baseSoilTileSet.png" id="2_tdxnh"]
-[ext_resource type="Script" uid="uid://dsg51tgeaaodd" path="res://Soil/Scripts/soil.gd" id="3_5wy8o"]
 [ext_resource type="Script" uid="uid://cxn38tpcxt6g0" path="res://addons/TopDownCamera2D/top_down_camera_2d.gd" id="3_8byll"]
 [ext_resource type="Shader" uid="uid://dol3bnwqn2edl" path="res://UI/Shaders/crt.gdshader" id="3_cx8v2"]
-[ext_resource type="Texture2D" uid="uid://dqefhnysemcks" path="res://UI/Assets/highlight.png" id="4_5wy8o"]
 [ext_resource type="Texture2D" uid="uid://brjfousn1da3w" path="res://Soil/Assets/leafCoverageTileSet.png" id="5_xjdvh"]
 [ext_resource type="TileSet" uid="uid://eeqpr2n2irwi" path="res://Soil/Resources/trees.tres" id="6_l5j2k"]
 [ext_resource type="Texture2D" uid="uid://bkimvo87koneh" path="res://UI/Assets/midTopInterface.png" id="7_omq11"]
@@ -71,6 +70,7 @@ shader_parameter/brightness_boost = 1.2
 texture_filter = 1
 scale = Vector2(4, 4)
 script = ExtResource("1_dqwt0")
+highlight_texture = ExtResource("2_omq11")
 
 [node name="scrollingWall" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_sospa")
@@ -78,6 +78,7 @@ offset_left = -250.0
 offset_top = -190.0
 offset_right = 250.0
 offset_bottom = 190.0
+mouse_filter = 2
 texture = ExtResource("10_y2h00")
 
 [node name="textures" type="Node2D" parent="."]
@@ -85,8 +86,6 @@ texture = ExtResource("10_y2h00")
 [node name="soil" type="TileMapLayer" parent="textures"]
 material = SubResource("ShaderMaterial_xjdvh")
 tile_set = SubResource("TileSet_jdse3")
-script = ExtResource("3_5wy8o")
-highlight_texture = ExtResource("4_5wy8o")
 
 [node name="leaf" type="TileMapLayer" parent="textures"]
 material = SubResource("ShaderMaterial_cx8v2")
@@ -216,3 +215,4 @@ offset_left = -272.0
 offset_top = -206.0
 offset_right = 228.0
 offset_bottom = 194.0
+mouse_filter = 2

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://tio4ck3fpjps"]
+[gd_scene load_steps=20 format=3 uid="uid://tio4ck3fpjps"]
 
+[ext_resource type="Script" uid="uid://ddniwbs2yc0ej" path="res://UI/Scripts/base_pop_up.gd" id="1_lxojb"]
 [ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="1_pbxun"]
 [ext_resource type="Material" uid="uid://b6rjpq0luo7d7" path="res://UI/Resources/chormaTexture.tres" id="2_tilo3"]
+[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="3_pbxun"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nt70i"]
 texture = ExtResource("1_pbxun")
@@ -22,26 +24,51 @@ gradient = SubResource("Gradient_0gxv8")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lxojb"]
+line_spacing = 0.0
+font = ExtResource("3_pbxun")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pwt4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fsvqv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npd72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0a6ey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e88pd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mljya"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bl2ug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i5s6n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0gqs1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mvnoj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dv7st"]
+
 [node name="base_pop_up" type="Control"]
+z_index = 1
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 21.0
-offset_right = 7.0
-offset_bottom = 21.0
+offset_right = -1835.0
+offset_bottom = -995.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_lxojb")
 
 [node name="MarginContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 8.25
-offset_top = 9.5
-offset_right = 87.25
-offset_bottom = 89.5
+offset_right = 79.0
+offset_bottom = 80.0
+mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
@@ -51,3 +78,33 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_ypi5g")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 134.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 0.5)
+text = "tile: (5, -2)"
+label_settings = SubResource("LabelSettings_lxojb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_right = 80.0
+offset_bottom = 10.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pwt4m")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fsvqv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_npd72")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_0a6ey")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e88pd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_mljya")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bl2ug")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_i5s6n")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0gqs1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_mvnoj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dv7st")
+
+[connection signal="pressed" from="close" to="." method="_on_close_pressed"]

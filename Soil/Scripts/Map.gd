@@ -1,11 +1,18 @@
 extends Node2D
 
+
+@export var highlight_texture: Texture2D
+var highlight_sprite: Sprite2D
+
+var	pop_up	= preload("res://UI/Scenes/basePopUp.tscn")
 var map_size	: int = 16
 var	tiles		: Array[Tile]
 
 func	_ready():
 	initTiles(map_size)
 	updateDisplayedTiles(tiles)
+	initHighlight()
+	Global.tiles = tiles
 	
 func	initTiles(size):
 	var offset = size *  .5
@@ -27,3 +34,35 @@ func updateDisplayedTiles(input : Array[Tile]):
 		$textures/canopy.set_cell(tile.coords, 0, Vector2i(tile.canopy_tree, 0))
 		$"textures/under-story".set_cell(tile.coords, 0, Vector2i(tile.under_story, 1))
 		$"textures/forest-ground".set_cell(tile.coords, 0, Vector2i(tile.forest_ground, 2))
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if get_viewport().gui_get_hovered_control() != null:
+			return
+		var mouse_pos = get_global_mouse_position()
+		var tile_pos = $textures/soil.local_to_map(to_local(mouse_pos))
+		Global.selected_tile = tile_pos
+		openSpecWindow(tile_pos)
+
+func	openSpecWindow(tile : Vector2):
+	var new_window = pop_up.instantiate()
+	new_window.initialize(tile)
+	add_child(new_window)
+
+func initHighlight():
+	highlight_sprite = Sprite2D.new()
+	highlight_sprite.texture = highlight_texture
+	highlight_sprite.z_index = 1
+	add_child(highlight_sprite)
+	highlight_sprite.hide()
+
+func _process(_delta):
+	var mouse_pos = get_global_mouse_position()
+	var tile_pos = $textures/soil.local_to_map(to_local(mouse_pos))
+	
+	if $textures/soil.get_cell_source_id(tile_pos) != -1:
+		highlight_sprite.position = $textures/soil.map_to_local(tile_pos)
+		Global.current_mouse_hover_tile = tile_pos
+		highlight_sprite.show()
+	else:
+		highlight_sprite.hide()
