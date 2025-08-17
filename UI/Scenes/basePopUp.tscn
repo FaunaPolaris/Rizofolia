@@ -70,6 +70,8 @@ script = ExtResource("1_lxojb")
 layout_mode = 0
 offset_right = 79.0
 offset_bottom = 80.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
@@ -83,8 +85,8 @@ texture = SubResource("GradientTexture2D_ypi5g")
 [node name="title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 6.0
-offset_right = 134.0
-offset_bottom = 16.0
+offset_right = 95.0
+offset_bottom = 13.0
 scale = Vector2(0.5, 0.5)
 text = "tile: (5, -2)"
 label_settings = SubResource("LabelSettings_lxojb")
@@ -94,14 +96,14 @@ vertical_alignment = 1
 [node name="Control" type="Control" parent="title"]
 anchors_preset = 0
 offset_left = -9.0
-offset_right = 127.0
-offset_bottom = 16.0
+offset_right = 92.0
+offset_bottom = 13.0
 
 [node name="close" type="Button" parent="."]
 layout_mode = 0
-offset_left = 70.0
-offset_right = 80.0
-offset_bottom = 10.0
+offset_left = 53.0
+offset_right = 60.0
+offset_bottom = 7.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pwt4m")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fsvqv")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_npd72")

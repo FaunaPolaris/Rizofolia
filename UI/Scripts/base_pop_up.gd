@@ -6,6 +6,7 @@ var drag_offset := Vector2.ZERO
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and have_mouse:
+		handleZIndex()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			drag_offset = get_global_mouse_position() - global_position
 	elif event is InputEventMouseButton and not event.pressed:
@@ -20,13 +21,18 @@ func	initialize(tile_pos : Vector2) -> void:
 	position.y = tile_pos.y * 16
 	$title.text = str("tile: (", tile_pos.x, ", ", tile_pos.y, ")")
 
+func	handleZIndex():
+	var max_z = 0
+	for sibling in get_parent().get_children():
+		if sibling != self and sibling.z_index > max_z:
+			max_z = sibling.z_index
+		z_index = max_z + 1
+
 func _on_close_pressed() -> void:
 	queue_free()
 
 func _on_control_mouse_entered() -> void:
 	have_mouse = true
-	print("mouse on me")
 
 func _on_control_mouse_exited() -> void:
 	have_mouse = false
-	print("mouse left me")

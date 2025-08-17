@@ -115,11 +115,13 @@ boundary_Y = 380.0
 metadata/_custom_type_script = "uid://cxn38tpcxt6g0"
 
 [node name="corners" type="Control" parent="TopDownCamera2D"]
-z_index = 1
+z_index = 4096
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="top" type="ColorRect" parent="TopDownCamera2D/corners"]
 z_index = 1
@@ -160,7 +162,8 @@ offset_bottom = 68.0
 color = Color(0.454902, 0.654902, 0.831373, 1)
 
 [node name="Interface" type="Control" parent="TopDownCamera2D"]
-z_index = 2
+z_index = 4096
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
