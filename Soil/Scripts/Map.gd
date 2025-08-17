@@ -39,10 +39,11 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if get_viewport().gui_get_hovered_control() != null:
 			return
-		var mouse_pos = get_global_mouse_position()
-		var tile_pos = $textures/soil.local_to_map(to_local(mouse_pos))
-		Global.selected_tile = tile_pos
-		openSpecWindow(tile_pos)
+		if event.get_button_index() == MOUSE_BUTTON_LEFT:
+			var mouse_pos = get_global_mouse_position()
+			var tile_pos = $textures/soil.local_to_map(to_local(mouse_pos))
+			Global.selected_tile = tile_pos
+			openSpecWindow(tile_pos)
 
 func	openSpecWindow(tile : Vector2):
 	var new_window = pop_up.instantiate()
