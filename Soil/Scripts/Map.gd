@@ -4,7 +4,7 @@ extends Node2D
 @export var highlight_texture: Texture2D
 var highlight_sprite: Sprite2D
 
-var	pop_up	= preload("res://UI/Scenes/basePopUp.tscn")
+var	pop_up	= preload("res://UI/Scenes/tileInspecPopUp.tscn")
 var map_size	: int = 16
 var	tiles		: Array[Tile]
 
@@ -26,6 +26,7 @@ func	initTiles(size):
 			tiles.append(new_tile)
 			coord.x += 1
 		coord.y += 1 
+
 	
 func updateDisplayedTiles(input : Array[Tile]):
 	for tile in tiles:
@@ -47,7 +48,8 @@ func _input(event):
 
 func	openSpecWindow(tile : Vector2):
 	var new_window = pop_up.instantiate()
-	new_window.initialize(tile)
+	print(tile)
+	new_window.initialize(tiles[((tile.y + 8) * map_size) + (tile.x + 8)])
 	add_child(new_window)
 
 func initHighlight():

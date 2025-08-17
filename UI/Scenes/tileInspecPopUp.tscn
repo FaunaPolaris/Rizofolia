@@ -1,12 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://tio4ck3fpjps"]
+[gd_scene load_steps=22 format=3 uid="uid://bl7001cm1u1rp"]
 
-[ext_resource type="Script" uid="uid://ddniwbs2yc0ej" path="res://UI/Scripts/base_pop_up.gd" id="1_lxojb"]
-[ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="1_pbxun"]
-[ext_resource type="Material" uid="uid://b6rjpq0luo7d7" path="res://UI/Resources/chormaTexture.tres" id="2_tilo3"]
-[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="3_pbxun"]
+[ext_resource type="Script" uid="uid://ddniwbs2yc0ej" path="res://UI/Scripts/base_pop_up.gd" id="1_ixeeb"]
+[ext_resource type="Texture2D" uid="uid://dehp4mxicrhpl" path="res://UI/Assets/treeBorder.png" id="2_arxgb"]
+[ext_resource type="Material" uid="uid://b6rjpq0luo7d7" path="res://UI/Resources/chormaTexture.tres" id="3_kocvb"]
+[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="4_36aip"]
+[ext_resource type="Script" uid="uid://njiadgi50s0u" path="res://UI/Scripts/basicInfoSetter.gd" id="5_arxgb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nt70i"]
-texture = ExtResource("1_pbxun")
+texture = ExtResource("2_arxgb")
 texture_margin_left = 6.0
 texture_margin_top = 9.0
 texture_margin_right = 9.0
@@ -28,7 +29,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lxojb"]
 line_spacing = 0.0
-font = ExtResource("3_pbxun")
+font = ExtResource("4_36aip")
 font_color = Color(0.486275, 0.701961, 0.258824, 1)
 outline_size = 4
 outline_color = Color(0.894118, 0.890196, 0.74902, 1)
@@ -55,6 +56,11 @@ outline_color = Color(0.894118, 0.890196, 0.74902, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dv7st"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ixeeb"]
+line_spacing = 0.0
+font = ExtResource("4_36aip")
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="base_pop_up" type="Control"]
 z_index = 1
 texture_filter = 1
@@ -67,7 +73,7 @@ offset_bottom = -1023.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_lxojb")
+script = ExtResource("1_ixeeb")
 
 [node name="MarginContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -77,7 +83,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
-material = ExtResource("2_tilo3")
+material = ExtResource("3_kocvb")
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
@@ -88,13 +94,15 @@ texture = SubResource("GradientTexture2D_ypi5g")
 layout_mode = 2
 offset_left = 6.0
 offset_top = -6.0
-offset_right = 84.0
+offset_right = 82.0
 offset_bottom = 72.0
 
 [node name="hbox" type="HBoxContainer" parent="vbox"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="title" type="Label" parent="vbox/hbox"]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "tile: (5, -2)"
 label_settings = SubResource("LabelSettings_lxojb")
@@ -108,7 +116,7 @@ offset_right = 66.0
 offset_bottom = 14.0
 
 [node name="close" type="Button" parent="vbox/hbox"]
-custom_minimum_size = Vector2(16, 0)
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pwt4m")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fsvqv")
@@ -121,6 +129,14 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_i5s6n")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0gqs1")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_mvnoj")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_dv7st")
+
+[node name="basic info" type="Label" parent="vbox"]
+layout_mode = 2
+text = "solo: pobre
+espécies: 4
+"
+label_settings = SubResource("LabelSettings_ixeeb")
+script = ExtResource("5_arxgb")
 
 [connection signal="mouse_entered" from="vbox/hbox/title/Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="vbox/hbox/title/Control" to="." method="_on_control_mouse_exited"]
