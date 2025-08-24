@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cahwmwdpdbobl"]
+
+[ext_resource type="Script" uid="uid://b8yjy8ny4ve25" path="res://UI/Scenes/list.gd" id="1_vxyrj"]
+[ext_resource type="StyleBox" uid="uid://djq02npipxhig" path="res://UI/Resources/inspecPopUp.tres" id="2_jkkmy"]
+[ext_resource type="Texture2D" uid="uid://c4pmyjlb7yci4" path="res://UI/Assets/borderYellow.png" id="3_r8ac4"]
+[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="4_0i6ly"]
+[ext_resource type="Texture2D" uid="uid://l657ok2gut6s" path="res://UI/Assets/arrowUp.png" id="5_jee01"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d3b0k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jhu7k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6hap"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_chpy6"]
+texture = ExtResource("3_r8ac4")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(1, 1, 14, 14)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vsfg2"]
+
+[sub_resource type="Theme" id="Theme_il522"]
+default_font = ExtResource("4_0i6ly")
+default_font_size = 16
+Button/colors/font_color = Color(0.894118, 0.890196, 0.74902, 1)
+Button/colors/font_hover_color = Color(0.737255, 0.737255, 0.588235, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_d3b0k")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_jhu7k")
+Button/styles/focus = ExtResource("2_jkkmy")
+Button/styles/hover = ExtResource("2_jkkmy")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_o6hap")
+Button/styles/normal = SubResource("StyleBoxTexture_chpy6")
+Button/styles/pressed = SubResource("StyleBoxEmpty_vsfg2")
+
+[node name="list" type="MarginContainer"]
+texture_filter = 1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_vxyrj")
+
+[node name="vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_il522")
+theme_override_constants/separation = 4
+
+[node name="canopy" type="VBoxContainer" parent="vbox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="button" type="Button" parent="vbox/canopy"]
+layout_mode = 2
+text = "dossel"
+icon = ExtResource("5_jee01")
+alignment = 0
+icon_alignment = 2
+
+[node name="understory" type="VBoxContainer" parent="vbox"]
+layout_mode = 2
+
+[node name="button" type="Button" parent="vbox/understory"]
+layout_mode = 2
+text = "sub-bosque"
+icon = ExtResource("5_jee01")
+alignment = 0
+icon_alignment = 2
+
+[node name="ground" type="VBoxContainer" parent="vbox"]
+layout_mode = 2
+
+[node name="button" type="Button" parent="vbox/ground"]
+layout_mode = 2
+text = "rasteiras "
+icon = ExtResource("5_jee01")
+alignment = 0
+icon_alignment = 2
+
+[connection signal="button_down" from="vbox/canopy/button" to="." method="_on_canopy_button_down"]

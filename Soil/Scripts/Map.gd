@@ -49,8 +49,8 @@ func _input(event):
 func	openSpecWindow(tile : Vector2):
 	var new_window = pop_up.instantiate()
 	print(tile)
-	new_window.initialize(tiles[((tile.y + 8) * map_size) + (tile.x + 8)])
 	add_child(new_window)
+	new_window.initialize(tiles[((tile.y + 8) * map_size) + (tile.x + 8)])
 
 func initHighlight():
 	highlight_sprite = Sprite2D.new()

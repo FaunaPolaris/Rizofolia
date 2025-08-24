@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://7f8ngjffpna"]
+
+[ext_resource type="FontFile" uid="uid://drjiq8gflnj4c" path="res://Shared/Resources/Fonts/m5x7.ttf" id="1_nrjhy"]
+[ext_resource type="Texture2D" uid="uid://dcl0t1x4wukg3" path="res://UI/Assets/curveYellowBorder.png" id="1_xty4s"]
+[ext_resource type="Script" uid="uid://da7aylpsnjaw1" path="res://UI/Scripts/species.gd" id="2_de4d3"]
+[ext_resource type="Texture2D" uid="uid://7rm6cogsu025" path="res://UI/Assets/arrowRight.png" id="2_xty4s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2baq"]
+line_spacing = 0.0
+font = ExtResource("1_nrjhy")
+font_color = Color(0.894118, 0.890196, 0.74902, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[node name="species" type="TextureRect"]
+texture_filter = 1
+offset_right = 80.0
+offset_bottom = 16.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_xty4s")
+script = ExtResource("2_de4d3")
+
+[node name="hbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 16.0
+offset_right = 88.0
+offset_bottom = 16.0
+theme_override_constants/separation = 0
+
+[node name="species_name" type="Label" parent="hbox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "figueira"
+label_settings = SubResource("LabelSettings_l2baq")
+vertical_alignment = 1
+max_lines_visible = 1
+visible_characters = 9
+
+[node name="Button" type="Button" parent="hbox"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+icon = ExtResource("2_xty4s")
+flat = true
+clip_text = true
+icon_alignment = 1
+expand_icon = true

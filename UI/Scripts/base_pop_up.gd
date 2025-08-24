@@ -1,7 +1,12 @@
 extends Control
 
-var	have_mouse	: bool = false
+class_name	PopUp
 
+var pop_up_inspect_scene	= load("res://UI/Scenes/inspecPopUp.tscn")
+
+var	have_mouse	: bool = false
+var	tile_pos
+var	tile
 var drag_offset := Vector2.ZERO
 
 func _input(event: InputEvent) -> void:
@@ -18,13 +23,21 @@ func _process(delta: float) -> void:
 	if drag_offset != Vector2.ZERO:
 		global_position = get_global_mouse_position() - drag_offset
 
-func	initialize(tile : Tile) -> void:
-	var	tile_pos = tile.coords
+func	initialize(_tile : Tile) -> void:
+	tile = _tile
+	tile_pos = _tile.coords
+	handleZIndex()
 	position.x = tile_pos.x * 16 + randi_range(8, 16)
 	position.y = tile_pos.y * 16 + randi_range(8, 16)
-	$vbox/hbox/title.text = str("tile: (", int(tile_pos.x), ", ", int(tile_pos.y), ")")
-	if $"vbox/basic info":
-		$"vbox/basic info".initialize(tile)
+	$vbox/hbox/title.text = str("(", int(tile_pos.x), ", ", int(tile_pos.y), ")")
+	$"vbox/basic info".initialize(_tile)
+
+func	initialize2(_tile : Tile) -> void:
+	tile = _tile
+	tile_pos = _tile.coords
+	handleZIndex()
+
+	$vbox/hbox/title.text = str("(", int(tile_pos.x), ", ", int(tile_pos.y), ")")
 
 func	handleZIndex():
 	var max_z = 0
@@ -38,6 +51,16 @@ func _on_close_pressed() -> void:
 
 func _on_control_mouse_entered() -> void:
 	have_mouse = true
+	print("mouse is mine")
 
 func _on_control_mouse_exited() -> void:
 	have_mouse = false
+	print("no mouse here :(")
+
+func _on_inspect_pressed() -> void:
+	var new_window =  pop_up_inspect_scene.instantiate()
+	add_sibling(new_window)
+	new_window.initialize2(tile)
+	new_window.position.y = position.y
+	new_window.position.x = position.x + 48
+	
