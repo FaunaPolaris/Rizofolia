@@ -36,7 +36,7 @@ func	initialize2(_tile : Tile) -> void:
 	tile = _tile
 	tile_pos = _tile.coords
 	handleZIndex()
-
+	$MarginContainer/list.initialize(tile)
 	$vbox/hbox/title.text = str("(", int(tile_pos.x), ", ", int(tile_pos.y), ")")
 
 func	handleZIndex():

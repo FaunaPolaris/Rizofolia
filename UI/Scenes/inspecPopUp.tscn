@@ -80,9 +80,11 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_nt70i")
 [node name="Panel" type="Panel" parent="MarginContainer"]
 material = ExtResource("3_lm35d")
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_ypi5g")
 
 [node name="list" parent="MarginContainer" instance=ExtResource("4_6etve")]
@@ -94,6 +96,7 @@ offset_left = 6.0
 offset_top = -6.0
 offset_right = 84.0
 offset_bottom = 72.0
+mouse_filter = 2
 
 [node name="hbox" type="HBoxContainer" parent="vbox"]
 layout_mode = 2
